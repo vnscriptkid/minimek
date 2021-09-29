@@ -4,16 +4,7 @@ import PropTypes from "prop-types";
 import TabBar from "./TabBar";
 
 const TabBarContainer = ({ tabs, ...otherProps }) => {
-  const [currentTab, setCurrentTab] = useState(tabs[0]?.name);
-
-  return (
-    <TabBar
-      {...otherProps}
-      currentTab={currentTab}
-      onTabClick={setCurrentTab}
-      tabs={tabs}
-    />
-  );
+  return <TabBar {...otherProps} tabs={tabs} />;
 };
 
 TabBarContainer.propTypes = {
