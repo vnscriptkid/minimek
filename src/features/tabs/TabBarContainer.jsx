@@ -1,35 +1,18 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import TabBar from "./TabBar";
 
-export default class TabBarContainer extends Component {
-  constructor(props) {
-    super(props);
+const TabBarContainer = ({ tabs, ...otherProps }) => {
+  const [currentTab, setCurrentTab] = useState(tabs[0]?.name);
 
-    const { tabs = [{ name: null }] } = props;
+  return (
+    <TabBar
+      {...otherProps}
+      currentTab={currentTab}
+      onTabClick={setCurrentTab}
+      tabs={tabs}
+    />
+  );
+};
 
-    const firstTab = tabs[0];
-
-    this.state = {
-      currentTab: firstTab.name,
-    };
-  }
-
-  onTabClick = (name) => {
-    this.setState({ currentTab: name });
-  };
-
-  render() {
-    const { tabs, ...otherProps } = this.props;
-    const { currentTab } = this.state;
-
-    return (
-      <TabBar
-        {...otherProps}
-        currentTab={currentTab}
-        onTabClick={this.onTabClick}
-        tabs={tabs}
-      />
-    );
-  }
-}
+export default TabBarContainer;
