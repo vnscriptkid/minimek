@@ -1,12 +1,12 @@
 import { Header, Container } from "semantic-ui-react";
 
-import TabBarContainer from "features/tabs/TabBarContainer";
 import Mechs from "features/mechs/Mechs";
 import Pilots from "features/pilots/Pilots";
 import UnitInfo from "features/unitInfo/UnitInfo";
 import UnitOrganization from "features/unitOrganization/UnitOrganization";
 
 import "./App.css";
+import TabBar from "features/tabs/TabBar";
 
 const tabs = [
   { name: "unitInfo", label: "Unit Info", component: UnitInfo },
@@ -27,7 +27,7 @@ const App = () => (
       </Header>
     </div>
     <Container>
-      <TabBarContainer tabs={tabs} size="massive" />
+      <TabBar tabs={tabs} size="massive" />
     </Container>
   </div>
 );

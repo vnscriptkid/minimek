@@ -43,6 +43,7 @@ const TabBar = ({ tabs, currentTab, onTabClick, ...otherProps }) => {
 };
 
 TabBar.propTypes = {
+  // from parent
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -50,6 +51,7 @@ TabBar.propTypes = {
       component: PropTypes.elementType.isRequired,
     })
   ),
+  // from hoc
   currentTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
 };
