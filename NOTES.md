@@ -5,3 +5,6 @@
 - CRA does not come with prettier by default, configure manually to have `format on save`
   https://create-react-app.dev/docs/setting-up-your-editor/
 - Absolute imports for CRA: [here](jsconfig.json)
+- Organize folders:
+  - file-types based
+  - features based
