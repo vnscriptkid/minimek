@@ -8,3 +8,10 @@
 - Organize folders:
   - file-types based
   - features based
+- Why moving currentTab to redux? React tree re-renders, we'll lose state
+- redux-orm: managing normalized relational data in redux store
+  - organize ur store like db tables
+  - nested data + schema => normalized data (Normalizr)
+  - features:
+    - select items
+    - create, update entries (immutable)
