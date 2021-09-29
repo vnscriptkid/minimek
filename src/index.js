@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import "semantic-ui-css/semantic.css";
-import App from "./App.jsx";
-import configureStore from "./store/configureStore";
 
 import reportWebVitals from "./reportWebVitals";
+import App from "app/layout/App";
+import configureStore from "app/store/configureStore";
 
 const store = configureStore();
 
