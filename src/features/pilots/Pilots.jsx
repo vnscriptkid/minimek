@@ -1,5 +1,4 @@
 import orm from "app/orm";
-import { useState } from "react";
 import { connect } from "react-redux";
 
 import { Grid, Segment, Header } from "semantic-ui-react";
@@ -12,7 +11,19 @@ const mapState = (state) => {
 
   const { Pilot } = session;
 
-  const pilots = Pilot.all().toRefArray();
+  const pilots = Pilot.all()
+    .toModelArray()
+    .map((pilotModel) => {
+      const pilot = { ...pilotModel.ref };
+
+      const { mech } = pilotModel;
+
+      if (mech && mech.type) {
+        pilot.mechType = mech.type.id;
+      }
+
+      return pilot;
+    });
 
   return { pilots };
 };
