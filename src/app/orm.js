@@ -5,16 +5,8 @@ import Mech from "features/mechs/Mech";
 
 const orm = new ORM();
 
-function proxyClassForORM(klass) {
-  return new Proxy(klass, {
-    apply(target, thisArg, rest) {
-      return new target(...rest);
-    },
-  });
-}
-
-orm.register(proxyClassForORM(Pilot));
-orm.register(proxyClassForORM(MechDesign));
-orm.register(proxyClassForORM(Mech));
+orm.register(Pilot);
+orm.register(MechDesign);
+orm.register(Mech);
 
 export default orm;

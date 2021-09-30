@@ -2,6 +2,7 @@
   "name": "minimek",
   "version": "0.1.0",
   "private": true,
+  "module": "src/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -15,7 +16,7 @@
     "react-redux": "5.0.6",
     "react-scripts": "4.0.3",
     "redux": "3.7.2",
-    "redux-orm": "0.9.4",
+    "redux-orm": "0.16.2",
     "redux-thunk": "2.2.0",
     "reselect": "3.0.1",
     "semantic-ui-css": "^2.4.1",
