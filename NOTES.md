@@ -15,3 +15,4 @@
   - features:
     - select items
     - create, update entries (immutable)
+- Mock apis using Promise

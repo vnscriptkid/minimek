@@ -7,6 +7,7 @@ import UnitOrganization from "features/unitOrganization/UnitOrganization";
 
 import "./App.css";
 import TabBar from "features/tabs/TabBar";
+import Tools from "features/tools/Tools";
 
 const tabs = [
   { name: "unitInfo", label: "Unit Info", component: UnitInfo },
@@ -16,6 +17,11 @@ const tabs = [
     name: "unitOrganization",
     label: "Unit Organization",
     component: UnitOrganization,
+  },
+  {
+    name: "tools",
+    label: "Tools",
+    component: Tools,
   },
 ];
 
