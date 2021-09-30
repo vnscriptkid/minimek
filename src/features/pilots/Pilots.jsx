@@ -1,24 +1,23 @@
+import orm from "app/orm";
 import { useState } from "react";
+import { connect } from "react-redux";
 
 import { Grid, Segment, Header } from "semantic-ui-react";
 
 import PilotDetails from "./PilotDetails";
 import PilotsList from "./PilotsList/PilotsList";
 
-const initialPilots = [
-  {
-    name: "Natasha Kerensky",
-    rank: "Captain",
-    age: 52,
-    gunnery: 2,
-    piloting: 3,
-    mechType: "WHM-6R",
-  },
-];
+const mapState = (state) => {
+  const session = orm.session(state.entities);
 
-function Pilots() {
-  const [pilots] = useState(initialPilots);
+  const { Pilot } = session;
 
+  const pilots = Pilot.all().toRefArray();
+
+  return { pilots };
+};
+
+function Pilots({ pilots }) {
   const currentPilot = pilots[0] || {};
 
   return (
@@ -39,4 +38,4 @@ function Pilots() {
   );
 }
 
-export default Pilots;
+export default connect(mapState)(Pilots);
