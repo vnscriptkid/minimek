@@ -16,3 +16,6 @@
     - select items
     - create, update entries (immutable)
 - Mock apis using Promise
+- Core idea behind Redux:
+  - pub/sub system
+  - All reducers receive an event and can react to it (combineReducers)
