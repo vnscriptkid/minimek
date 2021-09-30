@@ -1,8 +1,13 @@
 import { createReducer } from "common/utils/reducerUtils";
+import { DATA_LOADED } from "features/tools/toolConstants";
 
 const initialState = {
-  name: "Black Widow Company",
-  affiliation: "wd",
+  name: "N/A",
+  affiliation: "",
 };
 
-export default createReducer(initialState, {});
+const dataLoaded = (state, payload) => payload.unit;
+
+export default createReducer(initialState, {
+  [DATA_LOADED]: dataLoaded,
+});
