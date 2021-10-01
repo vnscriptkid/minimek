@@ -1,4 +1,7 @@
+import orm from "app/orm";
+import { connect } from "react-redux";
 import { Form, Dropdown } from "semantic-ui-react";
+import { selectCurrentPilot } from "./pilotsSelectors";
 import { pilotShape } from "./proptypes";
 
 const RANKS = [
@@ -12,6 +15,22 @@ const RANKS = [
 ];
 
 const MECHS = [{ value: "WHM-6R", text: "Warhammer WHM-6R" }];
+
+const mapState = (state) => {
+  let pilot;
+
+  const session = orm.session(state.entities);
+
+  const { Pilot } = session;
+
+  const currentPilot = selectCurrentPilot(state);
+
+  if (Pilot.idExists(currentPilot)) {
+    pilot = Pilot.withId(currentPilot).ref;
+  }
+
+  return { pilot };
+};
 
 const PilotDetails = ({ pilot = {} }) => {
   const {
@@ -57,4 +76,4 @@ PilotDetails.propTypes = {
   pilot: pilotShape,
 };
 
-export default PilotDetails;
+export default connect(mapState)(PilotDetails);

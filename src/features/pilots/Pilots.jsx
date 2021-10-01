@@ -37,8 +37,6 @@ const actions = {
 };
 
 function Pilots({ pilots, currentPilot, selectPilot }) {
-  const currentPilotEntry = pilots.find((p) => p.id === currentPilot) || {};
-
   return (
     <Segment>
       <Grid>
@@ -53,7 +51,7 @@ function Pilots({ pilots, currentPilot, selectPilot }) {
         <Grid.Column width={6}>
           <Header as="h3">Pilot Details</Header>
           <Segment>
-            <PilotDetails pilot={currentPilotEntry} />
+            <PilotDetails />
           </Segment>
         </Grid.Column>
       </Grid>
