@@ -1,18 +1,25 @@
 import { Table } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
-import { listOfPilots } from "../proptypes";
 import PilotsListHeader from "./PilotsListHeader";
 import PilotsListRow from "./PilotsListRow";
+import orm from "app/orm";
+import { connect } from "react-redux";
 
-function PilotsList({ pilots = [], onPilotClicked, currentPilot }) {
-  const pilotRows = pilots.map((pilot) => (
-    <PilotsListRow
-      key={pilot.name}
-      pilot={pilot}
-      selected={pilot.id === currentPilot}
-      onPilotClicked={onPilotClicked}
-    />
+const mapState = (state) => {
+  const session = orm.session(state.entities);
+  const { Pilot } = session;
+
+  const pilotIds = Pilot.all()
+    .toModelArray()
+    .map((pilotModel) => pilotModel.getId());
+
+  return { pilotIds };
+};
+
+function PilotsList({ pilotIds = [] }) {
+  const pilotRows = pilotIds.map((pilotId) => (
+    <PilotsListRow key={pilotId} pilotId={pilotId} />
   ));
 
   return (
@@ -24,9 +31,7 @@ function PilotsList({ pilots = [], onPilotClicked, currentPilot }) {
 }
 
 PilotsList.propTypes = {
-  pilots: listOfPilots,
-  onPilotClicked: PropTypes.func.isRequired,
-  currentPilot: PropTypes.number,
+  pilotIds: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default PilotsList;
+export default connect(mapState)(PilotsList);
