@@ -1,20 +1,33 @@
-import { useState } from "react";
+import orm from "app/orm";
+import { connect } from "react-redux";
 import { Grid, Segment, Header } from "semantic-ui-react";
 import MechDetails from "./MechDetails";
 import MechsList from "./MechsList";
 
-const initialMechs = [
-  {
-    id: 1,
-    name: "Warhammer",
-    type: "WHM-6R",
-    weight: 70,
-  },
-];
+const mapState = (state) => {
+  const session = orm.session(state.entities);
 
-const Mechs = () => {
-  const [mechs] = useState(initialMechs);
+  const { Mech } = session;
 
+  const mechs = Mech.all()
+    .toModelArray()
+    .map((mechModel) => {
+      const mech = {
+        ...mechModel.ref,
+        mechType: {},
+      };
+
+      if (mechModel.type) {
+        mech.mechType = { ...mechModel.type.ref };
+      }
+
+      return mech;
+    });
+
+  return { mechs };
+};
+
+const Mechs = ({ mechs = [] }) => {
   const currentMech = mechs[0] || {};
 
   return (
@@ -35,4 +48,4 @@ const Mechs = () => {
   );
 };
 
-export default Mechs;
+export default connect(mapState)(Mechs);

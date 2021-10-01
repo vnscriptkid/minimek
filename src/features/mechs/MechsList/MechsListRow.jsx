@@ -2,7 +2,10 @@ import { Table } from "semantic-ui-react";
 import { getWeightClass } from "../mechSelectors";
 
 const MechsListRow = ({ mech = {} }) => {
-  const { id = "", name = "", type = "", weight = "" } = mech;
+  const { id = "", mechType = {}, type = "" } = mech;
+
+  const { name = "", weight = "" } = mechType;
+
   const weightClass = getWeightClass(weight);
 
   return (

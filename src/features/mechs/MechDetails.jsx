@@ -1,7 +1,9 @@
 import { Form } from "semantic-ui-react";
 
 function MechDetails({ mech = {} }) {
-  const { id, name, type, weight, weightClass } = mech;
+  const { id = "", mechType = {}, type = "" } = mech;
+
+  const { name = "", weight = "" } = mechType;
 
   return (
     <Form size="large">
@@ -23,7 +25,7 @@ function MechDetails({ mech = {} }) {
       </Form.Field>
       <Form.Field name="class" width={6}>
         <label>Class</label>
-        <input value={weightClass} />
+        <input value={weight} />
       </Form.Field>
     </Form>
   );
