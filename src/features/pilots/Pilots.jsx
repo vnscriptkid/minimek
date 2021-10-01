@@ -5,6 +5,8 @@ import { Grid, Segment, Header } from "semantic-ui-react";
 
 import PilotDetails from "./PilotDetails";
 import PilotsList from "./PilotsList/PilotsList";
+import { selectCurrentPilot } from "./pilotsSelectors";
+import { selectPilot } from "./pilotsActions";
 
 const mapState = (state) => {
   const session = orm.session(state.entities);
@@ -25,23 +27,33 @@ const mapState = (state) => {
       return pilot;
     });
 
-  return { pilots };
+  const currentPilot = selectCurrentPilot(state);
+
+  return { pilots, currentPilot };
 };
 
-function Pilots({ pilots }) {
-  const currentPilot = pilots[0] || {};
+const actions = {
+  selectPilot,
+};
+
+function Pilots({ pilots, currentPilot, selectPilot }) {
+  const currentPilotEntry = pilots.find((p) => p.id === currentPilot) || {};
 
   return (
     <Segment>
       <Grid>
         <Grid.Column width={10}>
           <Header as="h3">Pilot List</Header>
-          <PilotsList pilots={pilots} />
+          <PilotsList
+            pilots={pilots}
+            currentPilot={currentPilot}
+            onPilotClicked={selectPilot}
+          />
         </Grid.Column>
         <Grid.Column width={6}>
           <Header as="h3">Pilot Details</Header>
           <Segment>
-            <PilotDetails pilot={currentPilot} />
+            <PilotDetails pilot={currentPilotEntry} />
           </Segment>
         </Grid.Column>
       </Grid>
@@ -49,4 +61,4 @@ function Pilots({ pilots }) {
   );
 }
 
-export default connect(mapState)(Pilots);
+export default connect(mapState, actions)(Pilots);

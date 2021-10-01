@@ -19,3 +19,5 @@
 - Core idea behind Redux:
   - pub/sub system
   - All reducers receive an event and can react to it (combineReducers)
+- Fix mapping between console.log and the file that it comes from
+  https://stackoverflow.com/questions/69071151/why-is-console-log-showing-react-devtools-backend-js4049-instead-of-the-file
