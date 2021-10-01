@@ -1,7 +1,12 @@
+import _ from "lodash";
 import { Table } from "semantic-ui-react";
-import { getWeightClass } from "../mechSelectors";
+import { getWeightClass } from "../mechsSelectors";
 
-const MechsListRow = ({ mech = {} }) => {
+const MechsListRow = ({
+  mech = {},
+  currentMech = null,
+  onMechClicked = _.noop,
+}) => {
   const { id = "", mechType = {}, type = "" } = mech;
 
   const { name = "", weight = "" } = mechType;
@@ -9,7 +14,7 @@ const MechsListRow = ({ mech = {} }) => {
   const weightClass = getWeightClass(weight);
 
   return (
-    <Table.Row>
+    <Table.Row active={id === currentMech} onClick={() => onMechClicked(id)}>
       <Table.Cell>{id}</Table.Cell>
       <Table.Cell>{name}</Table.Cell>
       <Table.Cell>{type}</Table.Cell>

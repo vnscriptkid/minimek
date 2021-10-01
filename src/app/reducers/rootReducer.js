@@ -1,3 +1,4 @@
+import mechsReducer from "features/mechs/mechsReducer";
 import pilotsReducer from "features/pilots/pilotsReducer";
 import tabsReducer from "features/tabs/tabsReducer";
 import unitInfoReducer from "features/unitInfo/unitInfoReducer";
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
   unitInfo: unitInfoReducer,
   entities: entitiesReducer,
   pilots: pilotsReducer,
+  mechs: mechsReducer,
 });
 
 export default rootReducer;

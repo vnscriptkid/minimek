@@ -14,10 +14,7 @@ function PilotsListRow({ pilot = {}, selected, onPilotClicked = _.noop }) {
     mechType = "",
   } = pilot;
   return (
-    <Table.Row
-      active={selected}
-      onClick={() => console.log(id) || onPilotClicked(id)}
-    >
+    <Table.Row active={selected} onClick={() => onPilotClicked(id)}>
       <Table.Cell>{name}</Table.Cell>
       <Table.Cell>{rank}</Table.Cell>
       <Table.Cell>{age}</Table.Cell>
