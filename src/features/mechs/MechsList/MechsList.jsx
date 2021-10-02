@@ -1,16 +1,25 @@
+import orm from "app/orm";
+import { connect } from "react-redux";
 import { Table } from "semantic-ui-react";
 
 import MechsListHeader from "./MechsListHeader";
 import MechsListRow from "./MechsListRow";
 
-function MechsList({ mechs = [], currentMech, onMechClicked }) {
-  const mechRows = mechs.map((mech) => (
-    <MechsListRow
-      mech={mech}
-      key={mech.id}
-      currentMech={currentMech}
-      onMechClicked={onMechClicked}
-    />
+const mapState = (state) => {
+  const session = orm.session(state.entities);
+
+  const { Mech } = session;
+
+  const mechIds = Mech.all()
+    .toModelArray()
+    .map((mechModel) => mechModel.getId());
+
+  return { mechIds };
+};
+
+function MechsList({ mechIds = [] }) {
+  const mechRows = mechIds.map((mechId) => (
+    <MechsListRow mechId={mechId} key={mechId} />
   ));
 
   return (
@@ -22,4 +31,4 @@ function MechsList({ mechs = [], currentMech, onMechClicked }) {
   );
 }
 
-export default MechsList;
+export default connect(mapState)(MechsList);
