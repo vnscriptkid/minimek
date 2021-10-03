@@ -22,3 +22,7 @@
 - Fix mapping between console.log and the file that it comes from
   https://stackoverflow.com/questions/69071151/why-is-console-log-showing-react-devtools-backend-js4049-instead-of-the-file
 - Redux technique: a connected list that passes item IDs to connected list items
+- Redux perf
+  - Make mapState fast, memoize slow ops like (map, filter) using reselect
+  - mapState should returns same ref to avoid unneccesary rendering
+  - more connected comp + less wasted rendering
